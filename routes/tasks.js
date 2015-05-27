@@ -10,13 +10,16 @@ exports.list = function(req, res, next){
 exports.add = function(req, res, next){
   if(!req.body || !req.body.name) return next(new Error('No data provided'))
 
+  console.log("AAAA")
+  // looks like there is a problem saving to the DB
   req.db.tasks.save({
     name: req.body.name,
     completed: false
   }), function(error, task){
+    console.log("BBBB")
     if (error) return next(error)
     if (!task) return next(new Error('Failed to save.'))
-
+    console.log("CCCC")
     console.log('Added %s with id=%s', task.name, task._id)
     res.redirect('/tasks')
   }
