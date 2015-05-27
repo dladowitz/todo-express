@@ -29,7 +29,7 @@ app.use(function(req, res, next){
 })
 
 // set appname globally
-app.locals.appaname = 'Express.js Todo App'
+app.locals.appname = 'Express.js Todo App'
 
 // set app configs
 app.set('port', process.env.PORT || 3000)
@@ -73,8 +73,8 @@ app.get( '/tasks', tasks.list)
 app.post('/tasks', tasks.markAllCompleted)
 app.post('/tasks', tasks.add)
 app.post('/tasks/:task_id', tasks.markCompleted)
-// app.del( '/tasks/:task_id', tasks.del)
-// app.get( '/tasks/completed', tasks.completed)
+app.del( '/tasks/:task_id', tasks.del)
+app.get( '/tasks/completed', tasks.completed)
 
 // catchall route
 app.all('*', function(req, res){
